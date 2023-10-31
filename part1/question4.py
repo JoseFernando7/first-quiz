@@ -23,9 +23,11 @@ import pets_db
 # The output should be a list of tuples in the format: (<pet name>, <species>, <age>)
 
 sql_pets_owned_by_nobody = """
-
-Your SQL here.
-
+SELECT a.name, a.species, a.age
+FROM `animals` AS a
+LEFT JOIN `people_animals` AS pa
+  ON a.animal_id = pa.pet_id
+WHERE pa.pet_id IS NULL
 """
 
 # Part 4.B:

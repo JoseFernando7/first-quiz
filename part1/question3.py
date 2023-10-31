@@ -25,12 +25,42 @@
 # The `alchemy_combine()` function will use your oven. You can see the expected 
 # formulas and their outputs in the test file, `question3_test.py`.
 
+
+class MagicOven:
+  def __init__(self):
+    self.ingredients = []
+    self.output = None
+
+  def add(self, item):
+    self.ingredients.append(item)
+
+  def freeze(self):
+    for item in self.ingredients:
+      if item == "water" or item == "air":
+        self.output = "snow"
+
+  def boil(self):
+    for item in self.ingredients:
+      if item == "lead" or item == "mercury":
+        self.output = "gold"
+
+      elif item == "cheese" or item == "dough" or item == "tomato":
+        self.output = "pizza"
+
+  def wait(self):
+    self.output = self.ingredients
+
+  def get_output(self):
+    return self.output
+
+
 # This function should return an oven instance!
 def make_oven():
-  None
+  # Instance of the oven class
+  magic_oven = MagicOven()
+  return magic_oven
 
 def alchemy_combine(oven, ingredients, temperature):
-  
   for item in ingredients:
     oven.add(item)
 
