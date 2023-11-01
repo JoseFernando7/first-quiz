@@ -35,16 +35,31 @@ WHERE pa.pet_id IS NULL
 # The output should be an integer.
 
 sql_pets_older_than_owner = """
-
-Your SQL here.
-
+SELECT COUNT(*)
+FROM `animals` AS a
+LEFT JOIN `people` AS p
+  ON a.animal_id = p.person_id
+WHERE a.age > p.age
 """
 
 # Part 4.C: BONUS CHALLENGE! 
 # Write SQL to select the pets that are owned by Bessie and nobody else.
 # The output should be a list of tuples in the format: (<person name>, <pet name>, <species>)
 sql_only_owned_by_bessie = """ 
-
-Your SQL here.
-
+SELECT p.name, a.name, a.species
+FROM `animals` AS a
+INNER JOIN `people_animals` AS pa
+  ON a.animal_id = pa.pet_id
+  INNER JOIN `people` AS p
+    ON pa.owner_id = p.person_id
+WHERE p.name = 'bessie'
+AND NOT EXISTS (
+  SELECT 1
+  FROM `people_animals` AS pa
+  INNER JOIN `people` AS p
+    ON pa.owner_id = p.person_id
+  WHERE pa.pet_id = a.animal_id AND p.name != 'bessie'
+)
 """
+
+# SELECT 1 para indicar que no queremos que retorne una columna de datos, únicamente el resultado booleano de la expresión EXISTS

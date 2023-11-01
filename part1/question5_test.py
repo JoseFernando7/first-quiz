@@ -4,8 +4,8 @@ from question5 import sql_create_favorite_foods, sql_alter_tables_with_favorite_
 FOODS = [
   (1, "spinach", 1),
   (2, "termites", 0),
-  (3, "turnips", 1),
-  (4, "cough drops", 1),
+  (3, "turnips", 1), # nabos
+  (4, "cough drops", 1), # pastillas para la tos
   (5, "shrimp", 0),
 ]
 
